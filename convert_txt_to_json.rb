@@ -11,7 +11,7 @@ def main
           'translated' => translated
         }
 
-        open("./json/#{word}.json", "w") {|of|
+        open("./json/#{word.downcase}.json", "w") {|of|
           of.write(h.to_json)
         }
       end
@@ -25,6 +25,14 @@ def target_word?(word)
   end
 
   if (word.include?("/"))
+    return false
+  end
+
+  if (word.include?(","))
+    return false
+  end
+
+  if (word.include?(" "))
     return false
   end
 
